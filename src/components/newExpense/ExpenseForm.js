@@ -21,6 +21,17 @@ const ExpenseForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if (
+      enteredTitle.trim().length === 0 ||
+      enteredAmount.trim().length === 0 ||
+      enteredDate === undefined
+    ) {
+      props.onError({
+        title: "Entered Valid Input",
+        message: "Please enter valid input (non-empty values).",
+      });
+      return;
+    }
 
     const expenseData = {
       title: enteredTitle,
